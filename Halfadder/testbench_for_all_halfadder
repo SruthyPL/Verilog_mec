@@ -1,0 +1,19 @@
+module tb_half_adder;
+    reg A, B;
+    wire SUM1, CARRY1, SUM2, CARRY2, SUM3, CARRY3;
+
+    half_adder_gate      ha1 (.A(A), .B(B), .SUM(SUM1), .CARRY(CARRY1));
+    half_adder_dataflow  ha2 (.A(A), .B(B), .SUM(SUM2), .CARRY(CARRY2));
+    half_adder_behavioral ha3 (.A(A), .B(B), .SUM(SUM3), .CARRY(CARRY3));
+
+    initial begin
+        $display("A B | SUM_GATE CARRY_GATE | SUM_DF CARRY_DF | SUM_BEH CARRY_BEH");
+        $monitor("%b %b |   %b        %b       |   %b      %b     |   %b       %b",
+                 A, B, SUM1, CARRY1, SUM2, CARRY2, SUM3, CARRY3);
+        A = 0; B = 0; #10;
+        A = 0; B = 1; #10;
+        A = 1; B = 0; #10;
+        A = 1; B = 1; #10;
+        $finish;
+    end
+endmodule
