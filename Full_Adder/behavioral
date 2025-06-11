@@ -1,0 +1,8 @@
+module full_adder_behavioral (
+    input A, B, Cin,
+    output reg SUM, CARRY
+);
+    always @ (A or B or Cin) begin
+        {CARRY, SUM} = A + B + Cin;
+    end
+endmodule
