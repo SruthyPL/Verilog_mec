@@ -1,0 +1,23 @@
+module tb_full_adder;
+    reg A, B, Cin;
+    wire SUM1, CARRY1, SUM2, CARRY2, SUM3, CARRY3;
+
+    full_adder_gate      fa1 (.A(A), .B(B), .Cin(Cin), .SUM(SUM1), .CARRY(CARRY1));
+    full_adder_dataflow  fa2 (.A(A), .B(B), .Cin(Cin), .SUM(SUM2), .CARRY(CARRY2));
+    full_adder_behavioral fa3 (.A(A), .B(B), .Cin(Cin), .SUM(SUM3), .CARRY(CARRY3));
+
+    initial begin
+        $display("A B Cin | SUM_GATE CARRY_GATE | SUM_DF CARRY_DF | SUM_BEH CARRY_BEH");
+        $monitor("%b %b  %b  |   %b        %b       |   %b      %b     |   %b       %b",
+                 A, B, Cin, SUM1, CARRY1, SUM2, CARRY2, SUM3, CARRY3);
+        A=0; B=0; Cin=0; #10;
+        A=0; B=0; Cin=1; #10;
+        A=0; B=1; Cin=0; #10;
+        A=0; B=1; Cin=1; #10;
+        A=1; B=0; Cin=0; #10;
+        A=1; B=0; Cin=1; #10;
+        A=1; B=1; Cin=0; #10;
+        A=1; B=1; Cin=1; #10;
+        $finish;
+    end
+endmodule
