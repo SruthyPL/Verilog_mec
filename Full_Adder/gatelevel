@@ -1,0 +1,11 @@
+module full_adder_gate (
+    input A, B, Cin,
+    output SUM, CARRY
+);
+    wire S1, C1, C2;
+    xor (S1, A, B);
+    xor (SUM, S1, Cin);
+    and (C1, A, B);
+    and (C2, S1, Cin);
+    or  (CARRY, C1, C2);
+endmodule
