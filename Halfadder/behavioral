@@ -1,0 +1,9 @@
+module half_adder_behavioral (
+    input A, B,
+    output reg SUM, CARRY
+);
+    always @ (A or B) begin
+        SUM = A ^ B;
+        CARRY = A & B;
+    end
+endmodule
